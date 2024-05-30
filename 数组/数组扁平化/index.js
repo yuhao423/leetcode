@@ -46,3 +46,19 @@ const compose = (...funcs)=>{
         }
     })
 }
+
+
+//编写⼀个函数计算多个数组的交集
+const jiaojiByManyArr = (...array)=>{
+
+    if(array.length === 0){
+        return []
+    }
+    if(array.length === 1){
+        return array[0]
+    }
+    //还是需要包一层的，因为 pre 可能会有重复的，需要去重
+    return new Set(...[array.reduce((pre,cur)=>{
+        return pre.filter((item,_)=>cur.includes(item))
+    })])
+}
