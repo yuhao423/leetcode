@@ -39,18 +39,18 @@ function hasCycle (head) {
    let slow = head
    let fast = head
 
-    while(slow && slow.next){   //这里得用 fast 来作文循环判断的条件，而不是slow ，思考为什么？
+    while(fast && fast.next){   //这里得用 fast 来作文循环判断的条件，而不是slow ，思考为什么？
 
     //快慢指针
       slow = slow.next
       fast = fast.next.next
 
-       if(slow === fast){
+       if(slow == fast){     //比较节点可能不能用全等的
         return true
       }
 
     }
-
+    //循环结束了就是没有环，返回 false
     return false
     
 };
