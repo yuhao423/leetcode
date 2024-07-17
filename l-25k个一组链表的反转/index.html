@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+        /**
+         * @param {ListNode} head
+         * @param {number} k
+         * @return {ListNode}
+         */
+        var reverseKGroup = function (head, k) {
+            let visturalNode = new ListNode()
+            visturalNode.next = head
+
+            let left = visturalNode;
+            let right = visturalNode.next;
+
+            let count = 0
+            while( right){
+                count++
+
+                if(count % k === 0){
+                    left = revserse(left,right)
+                    right = left.next
+                }else{
+                    right = right.next
+                }
+            }
+        };
+
+        //都是开区间的链表反转
+        function revserse(left,right){
+            let [prev,cur] = [left,left.next]
+
+            let first = cur //为什么呢？
+
+
+            //反向链表
+            while(cur !==right){
+                let next = cur.next;
+                cur.next = prev;
+                prev = cur
+                cur = next;
+            }   
+
+            //整理链表
+            left.next = prev;
+            first.next = cur;
+            return first  //
+        }
+    </script>
+</body>
+
+</html>
